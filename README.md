@@ -1,1 +1,1 @@
-# pygame_game
+# proyecto final programación de videojuegos
