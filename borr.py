@@ -12,14 +12,12 @@ PLAYER_SPEED = PLAYER_SIZE
 WHITE = (0, 0, 0)
 PATH_STAGE1_MAP = "TiledMap/Stage1/Stage1.tmx"
 PATH_PLAYER_SPRITE= "Sprites/bomberman_main.png"
-PATH_PLAYER_DOWN="Sprites/bomberman_main.png"
+PATH_PLAYER_DOWN="Sprites/bomberman_down.png"
 PATH_BLOCK_SPRITE= "Sprites/block_town.png"
-BLOCK_BOMB="sprites/bomb1.png"
-
-
+BLOCK_BOMB="sprites/bomb_sprite.png"
 
 class Player:
-    def __init__(self, x, y, size, speed, sprite, game_scale):
+    def _init_(self, x, y, size, speed, sprite, game_scale):
         self.posX = x
         self.posY = y
         self.size = size
@@ -27,7 +25,6 @@ class Player:
         self.sprite = pygame.image.load(sprite)
         # Escala la imagen al tamaño del jugador
         self.scaled_player_sprite = pygame.transform.scale(self.sprite, (game_scale * size, size * game_scale))
-        self.exploted = 0
 
     def move(self, movement_x, movement_y):
         self.posX += movement_x     #offset_x
@@ -42,7 +39,7 @@ class Player:
 
 class Block:
     collision_block = None
-    def __init__(self, x, y, size, sprite, game_scale):
+    def _init_(self, x, y, size, sprite, game_scale):
         self.posX = x
         self.posY = y
         self.size = size
@@ -55,7 +52,7 @@ class Block:
         game_window.blit(self.scaled_block_sprite, scaled_block_rect)
         self.collision_block  = scaled_block_rect  
 class Bomb:
-    def __init__(self, x, y, size, sprite, game_scale, timer=15):
+    def _init_(self, x, y, size, sprite, game_scale, timer=2):
         self.posX = x
         self.posY = y
         self.size = size
@@ -71,16 +68,16 @@ class Bomb:
 
     def update(self):
         # Disminuye el temporizador y devuelve True si llega a 0
-        #print(self.timer)
+        print(self.timer)
         self.timer -= 1
         if self.timer <=0:
-            self.exploded = True
+            self.exploted = True
         #return self.timer <= 0
                 
     
 
 class GameEngine:
-    def __init__(self, width, height, GAME_SCALE, player_size, player_speed):
+    def _init_(self, width, height, GAME_SCALE, player_size, player_speed):
         pygame.init()
         self.screen = pygame.display.set_mode((width * GAME_SCALE, height * GAME_SCALE))
         self.player = Player(POSITION_PLAYER_X, POSITION_PLAYER_Y, player_size, player_speed, PATH_PLAYER_SPRITE, GAME_SCALE)
@@ -152,13 +149,11 @@ class GameEngine:
                 bomb = Bomb(bomb_x, bomb_y, PLAYER_SIZE, BLOCK_BOMB, GAME_SCALE,10)
                 self.bombs.append(bomb)
             #controlar las bombas que ya explotaron y las que no
-
-            bombsexploted = []    
+            bombsexploted=[]    
             for bomb in self.bombs:
-                #if bomb.timer >= 0:
-                if bomb.exploded == False:
+                if bomb.exploded != False:
                     bombsexploted.append(bomb)
-            #print(len(bombsexploted))
+
             self.bombs=bombsexploted
 
             #renderizado / etapa de dibujo en pantala
@@ -199,14 +194,23 @@ class GameEngine:
 
         pygame.quit()
 
- 
+        
 game_engine = GameEngine(WIDTH_SCREEN , HEIGHT_SCREEN, GAME_SCALE, PLAYER_SIZE, PLAYER_SPEED)
 game_engine.run()
 
 
-abel = Player(POSITION_PLAYER_X, POSITION_PLAYER_Y, 16, 16, PATH_PLAYER_SPRITE, GAME_SCALE)
 
-abel.exploted = 10
-       
 
- 
+
+xtemp = 10
+
+
+
+
+
+xtemp = "hola mundo"
+
+
+
+
+funcionX(xtemp)
